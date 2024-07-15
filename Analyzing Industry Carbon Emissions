@@ -1,0 +1,10 @@
+--Using the product_emissions table, find the number of unique companies and their total carbon footprint PCF for each industry group, 
+filtering for the most recent year in the database. The query should return three columns: industry_group, num_companies, and total_industry_footprint, with the last column being rounded to one decimal place. 
+The results should be sorted by total_industry_footprint from highest to lowest values
+The data set for this was acquired from Nature.com https://www.nature.com/articles/s41597-022-01178-9
+
+SELECT industry_group, COUNT(DISTINCT company) as num_companies, ROUND(SUM(carbon_footprint_pcf), 1) as total_industry_footprint
+FROM product_emissions
+WHERE year = '2017'
+GROUP BY industry_group
+ORDER BY total_industry_footprint desc;
